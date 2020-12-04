@@ -1,26 +1,21 @@
-import { Schema, model } from "mongoose";
+import mongoose,{ Schema } from "mongoose";
 import UserInterface from "./user.interface";
 
-const userSchema: Schema = new Schema({
+const userSchema = new Schema({
     userId: {
         type: String,
         required: true,
-        trim: true
     },
     userName: {
         type: String,
         required: true,
-        trim: true
     },
     phoneNo: {
         type: Number,
-        trim: true
     },
     email: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,
         unique: true
     },
     profile: {
@@ -50,6 +45,8 @@ const userSchema: Schema = new Schema({
         type: Boolean
     },
 
-});
+},{  collection: 'User', timestamps: { createdAt: 'createdDate',updatedAt: 'lastModifiedDate' } 
+}
+);
 
-export default model<UserInterface>("User", userSchema);
+export default mongoose.model<UserInterface>("User", userSchema);
