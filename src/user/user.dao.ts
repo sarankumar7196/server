@@ -5,9 +5,13 @@ import bcrypt from 'bcrypt';
 export default class UserDAO {
     static async saveUserDAO(data: any) {
         try {
+
+            if(data.password){
+                data.password = this.encryptPassword(data.password);
+            } 
             const userResult = await User.create(data);
 
-            return { "isSuccess": true, "message": userResult };
+            return { "isSuccess": true, "data": userResult };
         } catch (err) {
             console.log("err",err)
             return { "isSuccess": false, "message": err.message };
@@ -16,7 +20,7 @@ export default class UserDAO {
    
     static async findUser (query: any) {
         try {
-            const result: UserInterface = await User.findOne(query).select('-password').populate('profile', 'name').populate('organization', 'name').populate('role');
+            const result: UserInterface = await User.findOne(query).select('-password').populate('profile', 'name');
             return { "isSuccess": true, "data": result };
         } catch(err) {
             return { "isSuccess": false, "message": err.message };

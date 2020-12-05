@@ -6,18 +6,17 @@ import User from '../user/user.dao';
 export default class LoginService {
 
     public async callSignIn(userInfo: UserInterface) {
-        const userResponse: any = await User.findUserToLogin({  email : userInfo.email, "isActive": true });
-       
-        if(userResponse.data) {
+        
+        const userResponse: any = await User.findUserToLogin({  email : userInfo.email });
+
+        if (userResponse.data) {
+            
             const isPasswordValid: Boolean =  User.decryptPassword( userInfo.password || '', userResponse.data.password);
             const userDetail =  userResponse.data;
 
             const us = await User.findUser({ email: userDetail.email });
+            
             if(isPasswordValid) {
-                // if(!userResponse.data.isPasswordVerified){
-                //     delete userResponse.data.password;
-                //     return { "isSuccess": false, "message" : "Please Reset Your Password","data" : userResponse.data };
-                // } 
                 return { "isSuccess": true, "data" : us.data };
             } else {
                 return { "isSuccess": false, "message" : "Password is incorrect" };

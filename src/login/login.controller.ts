@@ -11,7 +11,9 @@ export default class LoginCtrl {
 
     public async signIn (req: Request, res: Response,  next: NextFunction) {
         const service = new LoginCtrl().loginService;
+        
         const response: any = await service.callSignIn(req.body);
+
         if(response.isSuccess) {
             res.json({ "isSuccess" : true, "data": service.generateJwt(response.data) });
         } else {
