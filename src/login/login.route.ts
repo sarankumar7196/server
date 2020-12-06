@@ -10,8 +10,11 @@ class AuthenticateRoutes {
     }
 
     public authenticate(req: Request, res: Response, next: NextFunction) {
+
         const bearerToken: string = req.headers['authorization'];
-        if(bearerToken != undefined) {
+
+        if (bearerToken != undefined) {
+            
             jwt.verify(bearerToken, process.env.SECRET_KEY, (err: any, authData: any) => {
                 if(err) {
                     res.json({ "success" : false, "message" : "Invalid Token" });
