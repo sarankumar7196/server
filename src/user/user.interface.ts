@@ -1,8 +1,10 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export default interface User extends Document {
+    _id: Schema.Types.ObjectId,
     userId: String,
     userName: String,
+    password?: String,
     phoneNo?: Number,
     email: String
     profile?: Schema.Types.ObjectId,
