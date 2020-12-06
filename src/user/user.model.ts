@@ -12,6 +12,7 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
+        trim: true, 
         required: true,
     },
     phoneNo: {
@@ -20,7 +21,9 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        trim: true, 
+        lowercase: true, 
     },
     profile: {
         type: Schema.Types.ObjectId,

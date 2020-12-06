@@ -1,5 +1,6 @@
 import UserDAO from "./user.dao";
 import Profile from "../profile/profile.model";
+import AccountService from "../account/account.service"
 
 export default class UserService {
 
@@ -14,9 +15,31 @@ export default class UserService {
         let profileResult = await Profile.findOne(query);
         data.user.profile = profileResult._id;
 
-        let returnData = await UserDAO.saveUserDAO(data.user);
+        const userResult: any = await UserDAO.saveUserDAO(data.user);
 
-        return returnData;
+        if (!userResult.isSuccess || !userResult.data) {
+            return userResult;
+        }
+
+        if (data.checKbox.isAdmin) {
+    
+            const accountDetails = data.accountDetails;
+
+            accountDetails['user'] = userResult.data._id;
+            accountDetails['createdBy'] = userResult.data._id;
+            accountDetails['lastModifiedBy'] = userResult.data._id;
+
+            const accountResult: any = await new AccountService().saveAccountService(accountDetails,data.contact);
+
+            if (!accountResult.isSuccess || !accountResult.data) {
+             return accountResult;
+            }
+
+            return accountResult;
+        }
+
+
+        return userResult;
     }
     
 }
