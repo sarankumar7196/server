@@ -1,18 +1,6 @@
-import mongoose, { Schema, Document, mongo } from 'mongoose';
 
-export interface IProfile extends Document {
-
-    name: String,
-    description?: String,
-    createdBy?: mongoose.Schema.Types.ObjectId,
-    lastModifiedBy?: mongoose.Schema.Types.ObjectId,    
-    isAdmin?: Boolean,
-    isActive?: Boolean,
-    isDeleted?: Boolean,
-    isStandard?: Boolean,
-    createdDate?: Date,
-    lastModifiedDate?: Date,
-}
+import mongoose,{ Schema } from "mongoose";
+import ProfileInterface from "./profile.interface";
 
 const profileSchema: Schema = new Schema({
 
@@ -35,4 +23,4 @@ const profileSchema: Schema = new Schema({
     isDeleted: { type: Boolean, default: false }
 }, {  collection: 'Profile', timestamps: { createdAt: 'createdDate',updatedAt: 'lastModifiedDate' } });
 
-export default mongoose.model<IProfile>('Profile', profileSchema);
+export default mongoose.model<ProfileInterface>("Profile", profileSchema);
