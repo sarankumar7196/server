@@ -27,12 +27,14 @@
 import express from 'express';
 import UserRoutes from "./user/user.route";
 import LoginRoutes from "./login/login.route";
+import ForgotPasswordRoutes from "./forgot-password/forgot-password.route";
+
 class Routes {
     private app: express.Application;
     private router;
     private userRoute = UserRoutes; // member to old user routes
     private authenticateRoute = LoginRoutes; // member to old user routes
-    
+    private forgotPasswordRoute = ForgotPasswordRoutes; 
 
     constructor() {
         this.app = express(); 
@@ -42,7 +44,7 @@ class Routes {
     public routeSetup(app: express.Application): void {
         app.use('/api/auth', this.authenticateRoute.authRouteSetup(this.router));
         app.use("/api/user", this.userRoute.userRouteSetup(this.router));
-        
+        app.use("/api/forgot-password", this.forgotPasswordRoute.forgotPasswordRouteSetup(this.router));
     }
 } 
 
