@@ -8,7 +8,6 @@ export default interface Account extends Document {
     schoolType: String,
     phoneNo?: Number,
     address: String
-    profile: Schema.Types.ObjectId,
     location: String,
     user: Schema.Types.ObjectId,
     email: String,

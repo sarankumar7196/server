@@ -29,7 +29,8 @@ export default class UserService {
             accountDetails['createdBy'] = userResult.data._id;
             accountDetails['lastModifiedBy'] = userResult.data._id;
 
-            const accountResult: any = await new AccountService().saveAccountService(accountDetails,data.contact);
+            const accountResult: any = await new AccountService().saveAccountService(accountDetails,data.contactDetails);
+           console.log("sssss",accountResult)
 
             if (!accountResult.isSuccess || !accountResult.data) {
              return accountResult;

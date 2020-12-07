@@ -46,8 +46,6 @@ export default class UserDAO {
         }
     } 
 
-    
-
     static encryptPassword (password: String): String {
         const salt = bcrypt.genSaltSync(10);
         return bcrypt.hashSync(password, salt);
