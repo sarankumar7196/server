@@ -6,7 +6,7 @@ import { Result } from '../dto/app.dto'; // import result interface
 
 export default class UserService {
 
-    public async saveUserService(data: any): Promise<Result> {
+    static async saveUserService(data: any){
 
         let query = { isAdmin: false };
 

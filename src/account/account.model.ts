@@ -19,9 +19,7 @@ const accountSchema = new Schema({
         type: String,
     },
     location: {
-        type: String,
-        required: true,
-        unique: true
+        type: String
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
