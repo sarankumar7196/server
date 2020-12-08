@@ -8,7 +8,7 @@ class ProductRoutes {
         this.productCtrl = new ProductCtrl();
     }
 
-    public productSetup(router: Router): Router {
+    public productRouteSetup(router: Router): Router {
         
         let productController: ProductCtrl = new ProductRoutes().productCtrl;
 

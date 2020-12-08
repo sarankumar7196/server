@@ -8,10 +8,11 @@ export default class ProductCtrl {
         this.productService = new ProductService();
     }
 
-    public async createProduct (req: Request, res: Response,  next: NextFunction) {
+    public async createProduct(req: Request, res: Response, next: NextFunction) {
+        
         const service = new ProductCtrl().productService;
         
-        const response: any = await service.createProductService(req.body);
+        const response: any = await service.createProductService(req.body, req['user']);
 
         if(response.isSuccess) {
             res.json({ "isSuccess" : true, "data": response.data });

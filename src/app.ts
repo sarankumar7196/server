@@ -5,6 +5,8 @@ import cors from 'cors'; /* import the Cors Library */
 import helmet from 'helmet'; /* import the helmet library */
 import morgan from 'morgan'; /* import the Morgan Library */
 import compression from 'compression'; /* import the Compression Library */
+require('./product/product.model');
+require('./price/price.model');
 
 import Routes from './route'; /* import the Route files */
 

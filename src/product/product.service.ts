@@ -3,11 +3,10 @@ import CommonDao from "../common/common.dao"
 
 export default class ProductService {
 
-    public async createProductService(productInfo: any) {
+    public async createProductService(productInfo: any,userDetails: any) {
         try {
-            
-          let ss =  await CommonDao.createSingleRecord('Product', productInfo);
-          return 
+            const result: any = await CommonDao.createSingleRecord('Product', productInfo, userDetails);
+            return result;
         }
         catch (err) {
             console.log("err",err)
