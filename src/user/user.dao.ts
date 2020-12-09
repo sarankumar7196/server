@@ -1,5 +1,6 @@
 import User from "./user.model";
 import UserInterface from "./user.interface";
+import CommonController from "../common/common.controller";
 import bcrypt from 'bcrypt';
 
 export default class UserDAO {
@@ -10,7 +11,8 @@ export default class UserDAO {
                 data.password = this.encryptPassword(data.password);
             } 
             const userResult = await User.create(data);
-
+            CommonController.sendMailToUser(1,'Hey',"Success");
+            
             return { "isSuccess": true, "data": userResult };
         } catch (err) {
             console.log("err",err)
