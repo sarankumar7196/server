@@ -6,7 +6,7 @@ import path from "path"; // Import path library
 
 class CommonService {
   private expiryTime: number = Date.now(); // holds the date time in milli seconds
-  private access_token: string = ""; // holds the access token
+  private access_token: any = process.env.ACCESS_TOKEN; // holds the access token
 
   //private emailMessage: EmailMessage; // holds the sender email ids
   //private token: string; // holds the record id
@@ -66,14 +66,15 @@ class CommonService {
     if (this.access_token == "" || Date.now() < this.expiryTime) {
       const response: any = await this.getAccessToken();
       if (response.data) {
-        this.access_token = response.data.access_token;
+        this.access_token = process.env.ACCESS_TOKEN;
         console.log('access token -->',this.access_token);
         this.expiryTime = this.expiryTime + response.data.expires_in - 60;
       }
     }
     try {
       //this.getMailOptions(fileName); // calls the mail options
-      console.log('process env account id --> ', process.env.ACCOUNT_ID);
+      console.log('process env account id --> ', this.access_token);
+      console.log('Access token --->',process.env.ACCESS_TOKEN);
       const res = await axios({
         url:
           "https://mail.zoho.com/api/accounts/" +
@@ -83,7 +84,7 @@ class CommonService {
         data: data,
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Zoho-oauthtoken " + this.access_token
+          Authorization: "Zoho-oauthtoken " + process.env.ACCESS_TOKEN
         }
       }).then(response => { 
         console.log('1 response -->',response);

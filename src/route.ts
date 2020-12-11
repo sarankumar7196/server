@@ -27,7 +27,7 @@ class Routes {
         app.use('/auth', this.authenticateRoute.authRouteSetup(this.router));
         app.use("/user", this.userRoute.userRouteSetup(this.router));
         app.use("/forgot-password", this.forgotPasswordRoute.forgotPasswordRouteSetup(this.router));
-        app.use('/', this.configuration.authorize);
+        //app.use('/', this.configuration.authorize);
         app.use("/product", this.productRoute.productRouteSetup(this.router));
         app.use("/price", this.priceRoute.priceRouteSetup(this.router));
         

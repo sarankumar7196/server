@@ -14,7 +14,7 @@ export default class ForgotPasswordDao {
             } else {
                 message = 'Email not exists'
             }
-            return { isSuccess: true, data: message };
+            return { isSuccess: true, message: message };
         } catch (err) {
             console.log("err", err)
             return { "isSuccess": false, "message": err.message };
