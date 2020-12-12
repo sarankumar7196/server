@@ -30,7 +30,7 @@ class CommonService {
       
       const res = await axios({
         url:
-        "https://accounts.zoho.com/oauth/v2/token?refresh_token=" +
+        "https://accounts.zoho.in/oauth/v2/token?refresh_token=" +
           process.env.REFRESH_TOKEN +
           "&grant_type=" +
           process.env.GRANT_TYPE +
@@ -76,7 +76,7 @@ class CommonService {
       console.log('process env account id --> ', process.env.ACCOUNT_ID);
       const res = await axios({
         url:
-          "https://mail.zoho.com/api/accounts/" +
+          "https://mail.zoho.in/api/accounts/" +
           process.env.ACCOUNT_ID +
           "/messages",
         method: "POST",

@@ -8,7 +8,7 @@ export default class CommonController {
     try {
       //let result = await userDao.findUser(Id);
       let emailData = {
-        fromAddress: "admin@vidhyaan.com",
+        fromAddress: "adminuser@vidhyaan.com",
         toAddress: 'ranjithraja2696@gmail.com',
         subject: subjectMessage,
         encoding: "UTF-8",
