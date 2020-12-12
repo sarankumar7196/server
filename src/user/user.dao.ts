@@ -10,10 +10,10 @@ export default class UserDAO {
             if(data.password){
                 data.password = this.encryptPassword(data.password);
             } 
-            const userResult = await User.create(data);
+            //const userResult = await User.create(data);
             CommonController.sendMailToUser(1,'Hey',"Success");
             
-            return { "isSuccess": true, "data": userResult };
+            return { "isSuccess": true, "data": "" };
         } catch (err) {
             console.log("err",err)
             return { "isSuccess": false, "message": err.message };
